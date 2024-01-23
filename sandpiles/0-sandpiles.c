@@ -1,5 +1,11 @@
 #include "sandpiles.h"
 
+/**
+ * is_stable - checks if sandpile is stable.
+ * @grid: grid to check
+ * Return: 1 if stable else 0
+ */
+
 int is_stable(int grid[3][3])
 {
     for (int i = 0; i < 3; i++)
@@ -13,6 +19,10 @@ int is_stable(int grid[3][3])
     return (1);
 }
 
+/**
+ * topple - topples the sandpile to distribute sand
+ * @grid: grid to topple
+ */
 
 void topple(int grid[3][3])
 {
@@ -54,6 +64,12 @@ void topple(int grid[3][3])
         }
     }
 }
+
+/**
+ * sandpiles_sum - compute the sum of two sandpiles.
+ * @grid1: first sandpile
+ * @grid2: second sandpile
+ */
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
