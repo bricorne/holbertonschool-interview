@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Log parsing script that reads stdin line by line and computes metrics.
+"""
 import sys
 
 # Initialize variables
@@ -14,32 +17,33 @@ def print_statistics(size, codes):
         print("{}: {}".format(key, codes[key]))
 
 
-try:
-    for ln in sys.stdin:
-        if count == 10:
-            print_statistics(size, codes)
-            count = 1
-        else:
-            count += 1
+if __name__ == "__main__":
+    try:
+        for ln in sys.stdin:
+            if count == 10:
+                print_statistics(size, codes)
+                count = 1
+            else:
+                count += 1
 
-        ln = ln.split()
+            ln = ln.split()
 
-        try:
-            size = size + int(ln[-1])
-        except (IndexError, ValueError):
-            pass
+            try:
+                size = size + int(ln[-1])
+            except (IndexError, ValueError):
+                pass
 
-        try:
-            if ln[-2] in status_codes:
-                if ln[-2] not in codes:
-                    codes[ln[-2]] = 1
-                else:
-                    codes[ln[-2]] += 1
-        except IndexError:
-            pass
+            try:
+                if ln[-2] in status_codes:
+                    if ln[-2] not in codes:
+                        codes[ln[-2]] = 1
+                    else:
+                        codes[ln[-2]] += 1
+            except IndexError:
+                pass
 
-    print_statistics(size, codes)
+        print_statistics(size, codes)
 
-except KeyboardInterrupt:
-    print_statistics(size, codes)
-    raise
+    except KeyboardInterrupt:
+        print_statistics(size, codes)
+        raise
